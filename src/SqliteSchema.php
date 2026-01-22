@@ -206,7 +206,6 @@ class SqliteSchema extends AbstractSchema
      *
      * @param string $create The SQL used to create the table.
      *
-     * @psalm-suppress MixedArgumentTypeCoercion
      * @psalm-suppress MixedArrayAccess
      * @psalm-suppress MixedArgument
      */
@@ -217,7 +216,7 @@ class SqliteSchema extends AbstractSchema
 
         // loop through each column and find out if its default is a keyword
         foreach ($names as $curr => $name) {
-            $this->setColumnDefault($cols, (string)$name, (int)$curr, (int)$last, $names, $create);
+            $this->setColumnDefault($cols, (string)$name, $curr, $last, $names, $create);
             $cols[$name] = $this->column_factory->newInstance(
                 $cols[$name]['name'],
                 $cols[$name]['type'],
