@@ -53,6 +53,7 @@ abstract class AbstractSchema implements SchemaInterface
      * Returns the column factory object.
      *
      */
+    #[\Override]
     public function getColumnFactory(): ColumnFactory
     {
         return $this->column_factory;
@@ -111,7 +112,7 @@ abstract class AbstractSchema implements SchemaInterface
      * element 0 will be null and element 1 will be the name as given.
      *
      */
-    protected function splitName(string $name)
+    protected function splitName(string $name): array
     {
         $pos = strpos($name, '.');
         if ($pos === false) {
@@ -167,10 +168,8 @@ abstract class AbstractSchema implements SchemaInterface
      *
      * @param array $values Values to bind to the SQL statement.
      *
-     * @return array
-     *
      */
-    protected function pdoFetchAll($statement, array $values = [])
+    protected function pdoFetchAll($statement, array $values = []): array
     {
         $sth = $this->pdo->prepare($statement);
         $sth->execute($values);
@@ -185,10 +184,8 @@ abstract class AbstractSchema implements SchemaInterface
      *
      * @param array $values Values to bind to the SQL statement.
      *
-     * @return array
-     *
      */
-    protected function pdoFetchCol($statement, array $values = [])
+    protected function pdoFetchCol($statement, array $values = []): array
     {
         $sth = $this->pdo->prepare($statement);
         $sth->execute($values);
@@ -203,10 +200,8 @@ abstract class AbstractSchema implements SchemaInterface
      *
      * @param array $values Values to bind to the SQL statement.
      *
-     * @return mixed
-     *
      */
-    protected function pdoFetchValue($statement, array $values = [])
+    protected function pdoFetchValue($statement, array $values = []): mixed
     {
         $sth = $this->pdo->prepare($statement);
         $sth->execute($values);

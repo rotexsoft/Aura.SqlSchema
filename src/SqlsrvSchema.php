@@ -4,7 +4,6 @@
  * This file is part of Aura for PHP.
  *
  * @license http://opensource.org/licenses/bsd-license.php BSD
- *
  */
 namespace Rotexsoft\SqlSchema;
 
@@ -15,6 +14,7 @@ namespace Rotexsoft\SqlSchema;
  * @package Aura.SqlSchema
  *
  * @psalm-suppress UnusedClass
+ * @psalm-suppress ClassMustBeFinal
  */
 class SqlsrvSchema extends AbstractSchema
 {
@@ -47,6 +47,7 @@ class SqlsrvSchema extends AbstractSchema
      *
      * @psalm-suppress MixedReturnTypeCoercion
      */
+    #[\Override]
     public function fetchTableList(?string $schema = null): array
     {
         $text = "SELECT name FROM sysobjects WHERE type = 'U' ORDER BY name";
@@ -70,6 +71,7 @@ class SqlsrvSchema extends AbstractSchema
      * @psalm-suppress MixedAssignment
      * @psalm-suppress MixedArgument
      */
+    #[\Override]
     public function fetchTableCols(string $spec): array
     {
         // no need for $schema yet

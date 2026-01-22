@@ -9,7 +9,8 @@
 namespace Rotexsoft\SqlSchema;
 
 /**
- *
+ * @psalm-suppress ClassMustBeFinal
+ * 
  * Represents one column from a table.
  *
  * @package Aura.SqlSchema
@@ -111,7 +112,7 @@ class Column
      * @psalm-suppress PossiblyUnusedMethod
      *
      */
-    public function __get($key)
+    public function __get(string $key): mixed
     {
         return $this->$key;
     }
@@ -120,10 +121,8 @@ class Column
      * Check if the property is defined with any value
      *
      * @param string $key The property name.
-     *
-     * @return bool
      */
-    public function __isset($key)
+    public function __isset(string $key): bool
     {
         return property_exists($this, $key);
     }
@@ -145,7 +144,7 @@ class Column
      * 
      * @psalm-suppress MixedArgument
      */
-    public static function __set_state(array $array)
+    public static function __set_state(array $array): object
     {
         return new \Rotexsoft\SqlSchema\Column(
             (string) $array['name'],
