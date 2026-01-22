@@ -119,7 +119,7 @@ class SqliteSchema extends AbstractSchema
      * @return string The SQL used to create the table.
      *
      */
-    protected function getCreateTable($schema, $table): string
+    protected function getCreateTable(string $schema, string $table): string
     {
         $cmd = "
             SELECT sql FROM {$schema}sqlite_master
@@ -210,14 +210,14 @@ class SqliteSchema extends AbstractSchema
      * @psalm-suppress MixedArrayAccess
      * @psalm-suppress MixedArgument
      */
-    protected function convertColsToObjects(array &$cols, $create): void
+    protected function convertColsToObjects(array &$cols, string $create): void
     {
         $names = array_keys($cols);
         $last = count($names) - 1;
 
         // loop through each column and find out if its default is a keyword
         foreach ($names as $curr => $name) {
-            $this->setColumnDefault($cols, $name, $curr, $last, $names, $create);
+            $this->setColumnDefault($cols, (string)$name, (int)$curr, (int)$last, $names, $create);
             $cols[$name] = $this->column_factory->newInstance(
                 $cols[$name]['name'],
                 $cols[$name]['type'],
@@ -252,7 +252,7 @@ class SqliteSchema extends AbstractSchema
      * @psalm-suppress MixedArrayOffset
      * @psalm-suppress MixedArrayAssignment
      */
-    protected function setColumnDefault(array &$cols, $name, $curr, $last, array $names, $create): void
+    protected function setColumnDefault(array &$cols, string $name, int $curr, int $last, array $names, string $create): void
     {
         // For defaults using keywords, SQLite always reports the keyword
         // *value*, not the keyword itself (e.g., '2007-03-07' instead of
