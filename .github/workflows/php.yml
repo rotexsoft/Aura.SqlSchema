@@ -2,7 +2,7 @@ name: Run PHP Tests and Code Quality Tools
 
 on:
   push:
-    branches: [ rotexsoft-3.x ]
+    branches: [ rotexsoft-4.x ]
   pull_request:
     branches: [ rotexsoft-4.x ]
   schedule:
