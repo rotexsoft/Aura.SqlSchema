@@ -4,6 +4,7 @@
  * This file is part of Aura for PHP.
  *
  * @license http://opensource.org/licenses/bsd-license.php BSD
+ *
  */
 namespace Rotexsoft\SqlSchema;
 
@@ -14,7 +15,6 @@ namespace Rotexsoft\SqlSchema;
  * @package Aura.SqlSchema
  *
  * @psalm-suppress UnusedClass
- * @psalm-suppress ClassMustBeFinal
  */
 class MysqlSchema extends AbstractSchema
 {
@@ -50,17 +50,15 @@ class MysqlSchema extends AbstractSchema
                     
         $pdoObjId = \spl_object_hash($pdo);
         
-        /** @psalm-suppress MixedAssignment */
         $vars = 
-            \array_key_exists($pdoObjId, static::$varsMap)
-                ? static::$varsMap[$pdoObjId] // use cached value
-                : $pdo->query("SHOW VARIABLES LIKE '%version%'")
-                      ->fetchAll(\PDO::FETCH_KEY_PAIR); // fetch values from DB 
+            !\array_key_exists($pdoObjId, static::$varsMap)
+                ? $pdo->query("SHOW VARIABLES LIKE '%version%'")
+                      ->fetchAll(\PDO::FETCH_KEY_PAIR) // fetch values from DB
+                : static::$varsMap[$pdoObjId]; // use cached value
         
         // cache result for this pdo connection
         if(!\array_key_exists($pdoObjId, static::$varsMap)) {
 
-            /** @psalm-suppress MixedAssignment */
             static::$varsMap[$pdoObjId] = $vars;
         }
         
@@ -83,7 +81,6 @@ class MysqlSchema extends AbstractSchema
      *
      * @psalm-suppress MixedReturnTypeCoercion
      */
-    #[\Override]
     public function fetchTableList(?string $schema = null): array
     {
         $text = 'SHOW TABLES';
@@ -109,7 +106,6 @@ class MysqlSchema extends AbstractSchema
      * @psalm-suppress MixedArrayOffset
      * @psalm-suppress MixedArgument
      */
-    #[\Override]
     public function fetchTableCols(string $spec): array
     {
         [$schema, $table] = $this->splitName($spec);
@@ -175,8 +171,10 @@ class MysqlSchema extends AbstractSchema
      *
      * @param mixed $default The default value as reported by MySQL.
      *
+     * @return mixed
+     *
      */
-    protected function getDefault(mixed $default, bool $nullable): mixed
+    protected function getDefault(mixed $default, bool $nullable)
     {
         if ($this->maria && $nullable && $default === 'NULL') {
             return null;

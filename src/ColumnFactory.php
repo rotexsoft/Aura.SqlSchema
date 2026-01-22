@@ -13,7 +13,7 @@ namespace Rotexsoft\SqlSchema;
  * A factory for column objects.
  *
  * @package Aura.SqlSchema
- * @psalm-suppress ClassMustBeFinal
+ *
  */
 class ColumnFactory
 {

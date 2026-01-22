@@ -15,7 +15,6 @@ namespace Rotexsoft\SqlSchema;
  * @package Aura.SqlSchema
  *
  * @psalm-suppress UnusedClass
- * @psalm-suppress ClassMustBeFinal
  */
 class SqliteSchema extends AbstractSchema
 {
@@ -40,7 +39,6 @@ class SqliteSchema extends AbstractSchema
      *
      * @psalm-suppress MixedReturnTypeCoercion
      */
-    #[\Override]
     public function fetchTableList(?string $schema = null): array
     {
         if ($schema !== null) {
@@ -72,7 +70,6 @@ class SqliteSchema extends AbstractSchema
      *
      * @psalm-suppress MixedReturnTypeCoercion
      */
-    #[\Override]
     public function fetchTableCols(string $spec): array
     {
         [$schema, $table] = $this->getSchemaAndTable($spec);
@@ -102,7 +99,7 @@ class SqliteSchema extends AbstractSchema
         // is there a schema?
         if ($schema) {
             // sanitize and add a dot
-            $schema = (preg_replace('/[^\w]/', '', ((string) $schema) ) ?? '') . '.';
+            $schema = preg_replace('/[^\w]/', '', (string) $schema) . '.';
         }
 
         return [$schema, $table];
@@ -118,14 +115,16 @@ class SqliteSchema extends AbstractSchema
      *
      * @return string The SQL used to create the table.
      *
+     * @psalm-suppress MixedInferredReturnType
+     * @psalm-suppress MixedReturnStatement
      */
-    protected function getCreateTable($schema, $table): string
+    protected function getCreateTable($schema, $table)
     {
         $cmd = "
             SELECT sql FROM {$schema}sqlite_master
             WHERE type = 'table' AND name = :table
         ";
-        return (string) $this->pdoFetchValue($cmd, ['table' => $table]);
+        return $this->pdoFetchValue($cmd, ['table' => $table]);
     }
 
     /**
@@ -139,11 +138,13 @@ class SqliteSchema extends AbstractSchema
      * @param string $table The table name.
      *
      * @param string $create The SQL used to create the table.
+     *
+     * @return null
      * 
      * @psalm-suppress MixedAssignment
      * @psalm-suppress MixedArgument
      */
-    protected function setRawCols(array &$cols, string $schema, string $table, string $create): void
+    protected function setRawCols(array &$cols, string $schema, string $table, string $create)
     {
         $table = $this->quoteName($table);
         $raw_cols = $this->pdoFetchAll("PRAGMA {$schema}TABLE_INFO({$table})");
@@ -161,11 +162,13 @@ class SqliteSchema extends AbstractSchema
      * @param array $val The raw column values.
      *
      * @param string $create The SQL used to create the table.
+     *
+     * @return null
      * 
      * @psalm-suppress MixedAssignment
      * @psalm-suppress MixedArrayOffset
      */
-    protected function addColFromRaw(array &$cols, array $val, string $create): void
+    protected function addColFromRaw(array &$cols, array $val, string $create)
     {
         $name = $val['name'];
         [$type, $size, $scale] = $this->getTypeSizeScope((string)$val['type']);
@@ -284,9 +287,8 @@ class SqliteSchema extends AbstractSchema
         }
 
         // is the default a keyword?
-        $matches = [];
         preg_match("/{$find}/ims", $create, $matches);
-        if ($matches !== []) {
+        if (! empty($matches)) {
             $cols[$name]['default'] = null;
         }
     }

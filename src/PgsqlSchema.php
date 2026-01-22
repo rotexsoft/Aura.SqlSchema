@@ -4,6 +4,7 @@
  * This file is part of Aura for PHP.
  *
  * @license http://opensource.org/licenses/bsd-license.php BSD
+ *
  */
 namespace Rotexsoft\SqlSchema;
 
@@ -14,7 +15,6 @@ namespace Rotexsoft\SqlSchema;
  * @package Aura.SqlSchema
  *
  * @psalm-suppress UnusedClass
- * @psalm-suppress ClassMustBeFinal
  */
 class PgsqlSchema extends AbstractSchema
 {
@@ -29,7 +29,6 @@ class PgsqlSchema extends AbstractSchema
      *
      * @psalm-suppress MixedReturnTypeCoercion
      */
-    #[\Override]
     public function fetchTableList(?string $schema = null): array
     {
         if ($schema !== null) {
@@ -66,7 +65,6 @@ class PgsqlSchema extends AbstractSchema
      * @psalm-suppress MixedArrayAccess
      * @psalm-suppress MixedArrayOffset
      */
-    #[\Override]
     public function fetchTableCols(string $spec): array
     {
         [$schema, $table] = $this->splitName($spec);
@@ -159,7 +157,7 @@ class PgsqlSchema extends AbstractSchema
      * 
      * @psalm-suppress PossiblyUnusedParam
      */
-    protected function getDefault(mixed $default, string $type, bool $nullable): mixed
+    protected function getDefault(mixed $default, string $type, bool $nullable)
     {
         // null?
         if ($default === null || strtoupper((string)$default) === 'NULL') {
@@ -184,8 +182,12 @@ class PgsqlSchema extends AbstractSchema
         return null;
     }
     
+    /**
+     * @psalm-suppress MixedInferredReturnType
+     * @psalm-suppress MixedReturnStatement
+     */
     public function fetchCurrentSchema() : string
     {
-        return (string)$this->pdoFetchValue('SELECT CURRENT_SCHEMA');
+        return $this->pdoFetchValue('SELECT CURRENT_SCHEMA');
     }
 }

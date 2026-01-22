@@ -52,7 +52,6 @@ These are the branches in this repository:
   - more stricter type-hinting applied across the code-base, leading to changes in some of the interface method signatures.
   >This is going to be the branch in which code for version 3.x releases of **rotexsoft/sqlschema** will reside
 
-- **rotexsoft-4.x:** contains version 4.x code
 
 There will be future branches like **rotexsoft-4.x** & the likes for versions 4.x & above.
 

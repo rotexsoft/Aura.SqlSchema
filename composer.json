@@ -21,7 +21,7 @@
     "homepage": "https://github.com/rotexdegba/Aura.SqlSchema",
     "license": ["BSD-2-Clause", "BSD-3-Clause"],
     "require": {
-        "php": ">=8.2.0"
+        "php": ">=8.1.0"
     },
     "autoload": {
         "psr-4": {
@@ -29,9 +29,9 @@
         }
     },
     "require-dev": {
-        "rector/rector": "^2.0",
-        "vimeo/psalm" : "^6.0.0",
-        "phpunit/phpunit": "^12.0 || ^11.0",
+        "rector/rector": "^1.0.1",
+        "phpunit/phpunit": "^10.5",
+        "vimeo/psalm": "^5.22.1 || ^6.0.0",
         "php-coveralls/php-coveralls": "^2.0"
     },
     "scripts": {
@@ -39,7 +39,8 @@
             "Composer\\Config::disableProcessTimeout",
             "vendor/bin/phpunit --coverage-text"
         ],
-        "rector": "vendor/bin/rector process src --dry-run",
+        "rector-clear": "vendor/bin/rector --clear-cache",
+        "rector": "vendor/bin/rector process src --dry-run -vvv",
         "psalm-clear-cache": "vendor/bin/psalm --clear-global-cache && vendor/bin/psalm --clear-cache",
         "psalm": "composer psalm-clear-cache && vendor/bin/psalm --threads=1",
         "qa": "composer test && composer rector && composer psalm",

@@ -61,53 +61,57 @@ $test_results =  [];
 $container_creation_commands = [
     [
       'mysql:5.6.51' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mysql:5.6.51", 
-      'postgres:12.22' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:12.22", 
+      'postgres:12.18' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:12.18", 
     ],
     [
       'mysql:5.7.44' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mysql:5.7.44", 
-      'postgres:13.23' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:13.23", 
+      'postgres:13.14' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:13.14", 
     ],
     [
-      'mysql:8.0.45' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mysql:8.0.45", 
-      'postgres:14.20' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:14.20", 
+      'mysql:8.0.36' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mysql:8.0.36", 
+      'postgres:14.11' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:14.11", 
     ],
     [
-      'mysql:8.4.8' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mysql:8.4.8", 
-      'postgres:15.15' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:15.15", 
+      'mysql:8.2.0' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mysql:8.2.0", 
+      'postgres:15.6' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:15.6", 
     ],
     [
-      'mysql:9.5.2' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mysql:9.5.2", 
-      'postgres:16.11' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:16.11", 
+      'mysql:8.3.0' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mysql:8.3.0", 
+      'postgres:16.2' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:16.2", 
     ],
     
     // Maria db 
     [
-      'mariadb:10.4.34' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mariadb:10.4.34", 
-      'postgres:17.7' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:17.7", 
+      'mariadb:10.4.33' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mariadb:10.4.33", 
+      'postgres:16.2' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:16.2", 
     ],
     [
-      'mariadb:10.5.29' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mariadb:10.5.29", 
-      'postgres:18.1' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:18.1", 
+      'mariadb:10.5.24' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mariadb:10.5.24", 
+      'postgres:16.2' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:16.2", 
     ],
     [
-      'mariadb:10.6.24' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mariadb:10.6.24", 
-      'postgres:18.1' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:18.1", 
+      'mariadb:10.6.17' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mariadb:10.6.17", 
+      'postgres:16.2' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:16.2", 
     ],
     [
-      'postgres:18.1' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:18.1",
-      'mariadb:10.11.15' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mariadb:10.11.15", 
+      'mariadb:10.11.7' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mariadb:10.11.7", 
+      'postgres:16.2' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:16.2", 
     ],
     [
-      'mariadb:11.4.9' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mariadb:11.4.9",
-      'postgres:18.1' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:18.1",  
+      'mariadb:11.0.5' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mariadb:11.0.5", 
+      'postgres:16.2' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:16.2", 
     ],
     [
-      'postgres:18.1' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:18.1", 
-      'mariadb:11.8.5' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mariadb:11.8.5", 
+      'mariadb:11.1.4' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mariadb:11.1.4", 
+      'postgres:16.2' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:16.2", 
     ],
     [
-      'mariadb:12.1.2' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mariadb:12.1.2",
-      'postgres:18.1' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:18.1", 
+      'mariadb:11.2.3' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mariadb:11.2.3", 
+      'postgres:16.2' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:16.2", 
+    ],
+    [
+      'mariadb:11.3.2' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mariadb:11.3.2", 
+      'postgres:16.2' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:16.2", 
     ],
 ];
       
