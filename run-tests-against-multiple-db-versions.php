@@ -76,7 +76,7 @@ $container_creation_commands = [
       'postgres:15.15' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:15.15", 
     ],
     [
-      'mysql:9.5.2' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mysql:9.5.2", 
+      'mysql:8.4.8' => "podman run -dt -p 3306:3306 -e MYSQL_ROOT_PASSWORD={$mysql_root_psw} docker.io/library/mysql:8.4.8", 
       'postgres:16.11' => "podman run -dt -p 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust docker.io/library/postgres:16.11", 
     ],
     
