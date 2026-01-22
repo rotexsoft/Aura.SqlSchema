@@ -54,7 +54,7 @@ These are the branches in this repository:
 
 - **rotexsoft-4.x:** contains version 4.x code
 
-There will be future branches like **rotexsoft-4.x** & the likes for versions 4.x & above.
+There will be future branches like **rotexsoft-n.x** & the likes for versions n.x & above (where n represents the next major version).
 
 ### Testing
 
