@@ -64,17 +64,7 @@ trait CommonSchemaTestCodeTrait {
             if(
                 (!$is_mariadb && version_compare($version_number, '8.0.0', '>='))
                 || 
-                (
-                    $is_mariadb 
-                    && 
-                    (
-                        str_starts_with($version_number, '10.11.')
-                        || str_starts_with($version_number, '11.')
-                        //|| str_starts_with($version_number, '11.0.4')
-                        //|| str_starts_with($version_number, '11.1.3')
-                        //|| str_starts_with($version_number, '11.2.2')
-                    )
-                )
+                ($is_mariadb  && version_compare($version_number, '10.11.6', '>='))
             ) {
                 // timestamp column with column definition sql not explicitly 
                 // specifying NOT NULL leads to the column being nullable 
