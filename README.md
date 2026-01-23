@@ -7,15 +7,15 @@ using a [PDO](http://php.net/PDO) connection.
 
 This fork has been fine-tuned to work with Mariadb which [Aura.SqlSchema](https://github.com/auraphp/Aura.SqlSchema) was not designed to support.
 This fork has been tested against the following databases:
-- Mariadb 10.4.x, 10.5.x, 10.6.x, 10.11.x, 11.0.x, 11.1.x & 11.2.x
-- Mysql 5.6, 5.7, 8.0.x & 8.3.x 
-- Postgres 12.x, 13.x, 14.x, 15.x & 16.x
+- Mariadb 10.4.x, 10.5.x, 10.6.x, 10.11.x, 11.4.x, 11.8.x & 12.1.x
+- Mysql 5.6, 5.7, 8.0.x & 8.4.x 
+- Postgres 12.x, 13.x, 14.x, 15.x, 16.x, 17.x & 18.x
 
 Some future work will be done to make sure it works with Microsoft Sql Server
 
 ### Installation
 
-This library requires PHP 8.1 or later; we recommend using the latest available version of PHP as a matter of principle. It has no userland dependencies.
+This library requires PHP 8.2 or later; we recommend using the latest available version of PHP as a matter of principle. It has no userland dependencies.
 
 It is installable and autoloadable via Composer as [rotexsoft/sqlschema](https://packagist.org/packages/rotexsoft/sqlschema).
 
